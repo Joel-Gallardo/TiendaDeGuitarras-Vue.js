@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, watch } from 'vue'
 import { db } from './data/guitarras'
 import Guitarra from './components/guitarra.vue'
 import Header from './components/Header.vue'
@@ -13,6 +13,12 @@ import Footer from './components/Footer.vue'
 const guitarras = ref([]);    //si son otros tipos de datos ejem bool string etc utilizar ref
 const carrito = ref([])
 const guitarra = ref({})
+
+watch(carrito, () => {
+    guardarLocalStorage()
+}, {
+    deep: true
+})
 
 onMounted(() => {//metodo que se ejecuta cuando el componente esta montado
     guitarras.value = db;//aqui podria hacer un get a una api con fetch para traer los datos
@@ -39,8 +45,6 @@ const agregarCarrito = (guitarra) => {
         guitarra.cantidad = 1;
         carrito.value.push(guitarra);
     }
-
-    guardarLocalStorage();
 }
 
 const decrementarCantidad = (id) => {
@@ -52,8 +56,6 @@ const decrementarCantidad = (id) => {
     else {
         carrito.value[ index ].cantidad--;
     }
-
-    guardarLocalStorage();
 }
 
 const incrementarCantidad = (id) => {
@@ -65,20 +67,14 @@ const incrementarCantidad = (id) => {
     else {
         carrito.value[ index ].cantidad++;
     }
-
-    guardarLocalStorage();
 }
 
 const eliminarProducto = (id) => {
     carrito.value = carrito.value.filter(producto => producto.id !== id)
-
-    guardarLocalStorage();
 }
 
 const vaciarCarrito = () => {
     carrito.value = []
-
-    guardarLocalStorage();
 }
 
 </script>
