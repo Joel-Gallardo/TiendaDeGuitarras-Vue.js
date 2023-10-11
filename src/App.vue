@@ -12,10 +12,13 @@ import Footer from './components/Footer.vue'
 
 const guitarras = ref([]);    //si son otros tipos de datos ejem bool string etc utilizar ref
 const carrito = ref([])
+const guitarra = ref({})
 
 onMounted(() => {//metodo que se ejecuta cuando el componente esta montado
     guitarras.value = db;//aqui podria hacer un get a una api con fetch para traer los datos
     //state.guitarras = db;
+
+    guitarra.value = db[ 3 ]
 });
 
 const agregarCarrito = (guitarra) => {
@@ -54,7 +57,8 @@ const incrementarCantidad = (id) => {
 </script>
 
 <template>
-    <Header :carrito="carrito" @incrementar-cantidad="incrementarCantidad" @decrementar-cantidad="decrementarCantidad" />
+    <Header :carrito="carrito" :guitarra="guitarra" @incrementar-cantidad="incrementarCantidad"
+        @decrementar-cantidad="decrementarCantidad" @agregar-carrito="agregarCarrito" />
     <main class="container-xl mt-5">
         <h2 class="text-center">Nuestra Colección</h2>
 
