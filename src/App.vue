@@ -9,14 +9,16 @@ import Guitarra from './components/guitarra.vue'
 // console.log(state.guitarras);
 
 const guitarras = ref([]);    //si son otros tipos de datos ejem bool string etc utilizar ref
+const carrito = ref([])
 
-onMounted(() => {//metodo que se ejecuta cuando el componente esta montado 
+onMounted(() => {//metodo que se ejecuta cuando el componente esta montado
     guitarras.value = db;//aqui podria hacer un get a una api con fetch para traer los datos
     //state.guitarras = db;
 });
 
 const agregarCarrito = (guitarra) => {
-    console.log(guitarra);
+    guitarra.cantidad = 1;
+    carrito.value.push(guitarra);
 }
 
 </script>
