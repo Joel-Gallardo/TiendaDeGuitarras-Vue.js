@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 
 //pasando datos del componente padre al hijo mediante el v-bind:guitarra="guitarra" estoy comunicando los objetos guitarra que se obtiene en el v-for del componente padre
 const props = defineProps({
@@ -23,7 +22,7 @@ defineEmits([ 'agregar-carrito' ])
             <h3 class="text-black fs-4 fw-bold text-uppercase">{{ guitarra.nombre }}</h3>
             <p>{{ guitarra.descripcion }}</p>
             <p class="fw-black text-primary fs-3">$ {{ guitarra.precio }}</p>
-            <button type="button" class="btn btn-dark w-100 " @click="$emit('agregar-carrito')">Agregar al
+            <button type="button" class="btn btn-dark w-100 " @click="$emit('agregar-carrito', guitarra)">Agregar al
                 Carrito</button>
         </div>
     </div><!-- FIN GUITARRA -->

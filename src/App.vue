@@ -15,8 +15,8 @@ onMounted(() => {//metodo que se ejecuta cuando el componente esta montado
     //state.guitarras = db;
 });
 
-const agregarCarrito = () => {
-    console.log('agregando...');
+const agregarCarrito = (guitarra) => {
+    console.log(guitarra);
 }
 
 </script>
